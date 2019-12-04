@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author crist
  */
 public class App {
-    private final String url = "jdbc:postgresql://5432/vehicleScheduling";
+    private final String url = "jdbc:postgresql://5432/vehicles";
     private final String user = "postgres";
     private final String password = "Java1sland";
  

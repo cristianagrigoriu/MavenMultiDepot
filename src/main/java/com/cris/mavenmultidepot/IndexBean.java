@@ -7,6 +7,8 @@ package com.cris.mavenmultidepot;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
@@ -19,10 +21,6 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name="indexBean")            
 @RequestScoped
 public class IndexBean {
-
-    private final String url = "jdbc:postgresql://localhost:5432/vehicles";
-    private final String user = "postgres";
-    private final String password = "Java1sland";
     
     /**
      * Creates a new instance of IndexBean
@@ -30,11 +28,27 @@ public class IndexBean {
     public IndexBean() {
         Connection conn = null;
         try {
-            //getConnection("jdbc:postgresql://localhost:5432/example", "postgres", "postgres")
-            //Class.forName("com.mysql.jdbc.Driver"); 
-            conn = DriverManager.getConnection(url, user, password);
+            
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+            String stm = "select * from depots";
+            
+            Class.forName("org.postgresql.Driver");
+            String url = "jdbc:postgresql://localhost/vehicles?user=postgres&password=Java1sland";
+            conn = DriverManager.getConnection(url);
+            
+            pst = conn.prepareStatement(stm);
+            pst.execute();
+            rs = pst.getResultSet();
+            
+            while(rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                int c = rs.getInt(3);
+            }
+            
             System.out.println("Connected to the PostgreSQL server successfully.");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
