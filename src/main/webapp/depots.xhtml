@@ -7,21 +7,17 @@
         <title>Depots</title>
     </h:head>
     <h:body>
-        <p:dataTable var="car" value="#{dtBasicView.cars}">
+        <p:dataTable var="depot" value="#{depotView.depots}">
             <p:column headerText="Id">
-                <h:outputText value="#{car.id}" />
+                <h:outputText value="#{depot.id}" />
             </p:column>
 
-            <p:column headerText="Year">
-                <h:outputText value="#{car.year}" />
+            <p:column headerText="Name">
+                <h:outputText value="#{depot.name}" />
             </p:column>
 
-            <p:column headerText="Brand">
-                <h:outputText value="#{car.brand}" />
-            </p:column>
-
-            <p:column headerText="Color">
-                <h:outputText value="#{car.color}" />
+            <p:column headerText="Capacity">
+                <h:outputText value="#{depot.capacity}" />
             </p:column>
         </p:dataTable>
     </h:body>
