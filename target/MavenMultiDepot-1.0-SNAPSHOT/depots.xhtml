@@ -2,24 +2,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Depots</title>
     </h:head>
     <h:body>
-        <p:dataTable var="depot" value="#{depotView.depots}">
-            <p:column headerText="Id">
-                <h:outputText value="#{depot.id}" />
-            </p:column>
+        <h:form id="actorsTableForm">
+            <p:dataTable var="depot" value="#{depotView.depots}"
+                         editable="true">
+                <p:column headerText="Id">
+                    <h:outputText value="#{depot.id}" />
+                </p:column>
 
-            <p:column headerText="Name">
-                <h:outputText value="#{depot.name}" />
-            </p:column>
-
-            <p:column headerText="Capacity">
-                <h:outputText value="#{depot.capacity}" />
-            </p:column>
-        </p:dataTable>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name" />
+                    </f:facet>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{depot.name}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{depot.name}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                    
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Capacity" />
+                    </f:facet>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{depot.capacity}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{depot.capacity}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                <p:column>
+                    <p:rowEditor />
+                </p:column>
+                
+                <p:column>
+                    <p:commandButton icon="ui-icon-trash"
+                            title="Delete"
+                            actionListener="#{actorsMB.remove(item)}"
+                            ajax="false" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
     </h:body>
 </html>
 
