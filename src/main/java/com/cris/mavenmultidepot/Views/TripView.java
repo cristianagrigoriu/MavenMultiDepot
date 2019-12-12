@@ -5,10 +5,10 @@
  */
 package com.cris.mavenmultidepot.Views;
 
-import com.cris.mavenmultidepot.Providers.DepotService;
 import com.cris.mavenmultidepot.Models.DepotModel;
+import com.cris.mavenmultidepot.Models.TripModel;
+import com.cris.mavenmultidepot.Providers.DepotService;
 import com.cris.mavenmultidepot.Providers.TripService;
-import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -21,21 +21,22 @@ import org.primefaces.event.RowEditEvent;
 
 /**
  *
- * @author crist
+ * @author cristiana
  */
-@Named("depotView")
+
+@Named("tripView")
 @ManagedBean
 @ViewScoped
-public class DepotView implements Serializable {
-    private List<DepotModel> depots;
+public class TripView implements Serializable {
+    private List<TripModel> trips;
     
     @PostConstruct
     public void init() {
-        depots = new DepotService().getDepots();
+        trips = new TripService().getTrips();
     }
     
-    public List<DepotModel> getDepots() {
-        return depots;
+    public List<TripModel> getTrips() {
+        return trips;
     }
     
     public void onRowEdit(RowEditEvent event) {
@@ -48,12 +49,12 @@ public class DepotView implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
-    public void remove(DepotModel depot) {
-        depots.remove(depot);
+    public void remove(TripModel trip) {
+        trips.remove(trip);
     }
     
-    public void saveDepots() {
-        addMessage(DepotService.saveDepotsToDatabase());
+    public void saveTrips() {
+        addMessage(TripService.saveTripsToDatabase());
     }
  
     public void addMessage(String summary) {

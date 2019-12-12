@@ -1,12 +1,69 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Trips</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form id="tripsTableForm">
+            <p:dataTable var="trip" value="#{tripView.trips}"
+                         editable="true">
+                
+                <p:ajax event="rowEdit" listener="#{tripView.onRowEdit}" />
+                <p:ajax event="rowEditCancel" listener="#{depotView.onRowCancel}"/>
+                
+                <p:column headerText="Id">
+                    <h:outputText value="#{trip.id}" />
+                </p:column>
+
+                <p:column headerText="Starting Time">
+                    <h:outputText value="#{trip.startingTime}" />
+                </p:column>
+                    
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Duration" />
+                    </f:facet>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{trip.duration}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{trip.duration}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                <p:column headerText="Source Depot">
+                    <h:outputText value="#{trip.sourceDepot.name}" />
+                </p:column>
+                
+                <p:column headerText="Destination Depot">
+                    <h:outputText value="#{trip.destinationDepot.name}" />
+                </p:column>
+                
+                <p:column>
+                    <p:rowEditor />
+                </p:column>
+                
+                <p:column>
+                    <p:commandButton icon="ui-icon-trash"
+                            title="Delete"
+                            actionListener="#{tripView.remove(trip)}"
+                            update=":tripsTableForm"
+                            ajax="true" />
+                </p:column>
+            </p:dataTable>
+            
+            <p:commandButton value="Save" action="#{tripView.saveTrips}" update="growl" 
+                             style="margin-right:20px; margin-top: 20px" icon="ui-icon-disk"/>
+            
+            <p:growl id="growl" life="2000" />
+            
+        </h:form>
     </h:body>
 </html>
 

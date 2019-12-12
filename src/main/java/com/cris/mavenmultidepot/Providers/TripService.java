@@ -7,12 +7,17 @@ package com.cris.mavenmultidepot.Providers;
 
 import com.cris.mavenmultidepot.Models.DepotModel;
 import com.cris.mavenmultidepot.Models.TripModel;
-import static com.cris.mavenmultidepot.Providers.TripService.trips;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,38 +25,33 @@ import static java.util.UUID.fromString;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 /**
  *
- * @author cristiana
+ * @author crist
  */
 @Named
 @ApplicationScoped
 @ManagedBean
-public class DepotService {
-    public static List<DepotModel> depots = new ArrayList<DepotModel>();
+public class TripService {
     
-    public static List<DepotModel> getDepots() {
-        if (depots.isEmpty()) {
-            depots = getDepotsFromDatabase();
+    public static List<TripModel> trips = new ArrayList<>();
+
+    public static List<TripModel> getTrips() {
+        if (trips.isEmpty()) {
+            trips = getTripsFromDatabase();
         }
-        return depots;
+        return trips;
     }
     
-    public List<DepotModel> createDepots() {
-        depots.add(new DepotModel(UUID.randomUUID(), "White", 500));
-        depots.add(new DepotModel(UUID.randomUUID(), "Black", 100));
-        
-        return depots;
-    }
-    
-    private static List<DepotModel> getDepotsFromDatabase() {
+    private static List<TripModel> getTripsFromDatabase() {
         Connection conn = null;
         try {
             
             ResultSet rs = null;
             PreparedStatement pst = null;
-            String stm = "select * from depots";
+            String stm = "select * from trips";
             
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost/vehicles?user=postgres&password=Java1sland";
@@ -61,14 +61,22 @@ public class DepotService {
             pst.execute();
             rs = pst.getResultSet();
             
+            List<DepotModel> depots = new DepotService().getDepots();
+            
             while(rs.next()) {
                 String id = rs.getString(1);
-                String name = rs.getString(2);
-                int capacity = rs.getInt(3);
-                depots.add(new DepotModel(fromString(id), name, capacity));
+                Timestamp startingTime = rs.getTimestamp(2);;
+                int duration = rs.getInt(3);
+                String sourceDepotId = rs.getString(4);
+                String destinationDepotId = rs.getString(5);
+                
+                trips.add(new TripModel(fromString(id), startingTime, duration, 
+                        DepotService.findDepotById(depots, fromString(sourceDepotId)), DepotService.findDepotById(depots, fromString(destinationDepotId))));
             }
             
-            return depots;
+            rs.close();
+            
+            return trips;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -76,31 +84,33 @@ public class DepotService {
         return null;
     }
     
-    public static String saveDepotsToDatabase() {
+    public static String saveTripsToDatabase() {
         Connection conn = null;
         try {
-            
-            ResultSet rs = null;
             PreparedStatement pst = null;
             
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost/vehicles?user=postgres&password=Java1sland";
             conn = DriverManager.getConnection(url);
             
-            String stm = "delete from depots";
+            String stm = "delete from trips";
             pst = conn.prepareStatement(stm);
             pst.execute();
             
-            for (DepotModel depot : DepotService.getDepots()) {
-                stm = "INSERT INTO depots(id, name, capacity) "
-                    + "VALUES(?,?,?)";
-                PreparedStatement pstmt = conn.prepareStatement(stm, Statement.RETURN_GENERATED_KEYS);
-                pstmt.setObject(1, depot.getId());
-                pstmt.setString(2, depot.getName());
-                pstmt.setInt(3, depot.getCapacity());
+            for (TripModel trip : TripService.getTrips()) {
+                stm = "INSERT INTO trips(id, starting_time, duration, source_depot_id, destination_depot_id) "
+                    + "VALUES(?,?,?,?,?)";
+                pst = conn.prepareStatement(stm, Statement.RETURN_GENERATED_KEYS);
+                pst.setObject(1, trip.getId(), Types.OTHER);
+                pst.setTimestamp(2, trip.getStartingTime());
+                pst.setInt(3, trip.getDuration());
+                pst.setObject(4, trip.getSourceDepot().getId(), Types.OTHER);
+                pst.setObject(5, trip.getDestinationDepot().getId(), Types.OTHER);
 
-                int affectedRows = pstmt.executeUpdate();
+                int affectedRows = pst.executeUpdate();
             }
+            
+            pst.close();
             
         } catch (Exception e) {
             //System.out.println(e.getMessage());
@@ -108,9 +118,4 @@ public class DepotService {
         }
         return "All records saved";
     }
-    
-    public static DepotModel findDepotById(List<DepotModel> depots, UUID depotId) {
-        return depots.stream().filter(d -> depotId.equals(d.getId())).findFirst().orElse(null);
-    }
-    
 }

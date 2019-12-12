@@ -5,6 +5,7 @@
  */
 package com.cris.mavenmultidepot.Models;
 
+import java.util.UUID;
 import javax.enterprise.inject.Model;
 import javax.faces.bean.ViewScoped;
 
@@ -15,15 +16,15 @@ import javax.faces.bean.ViewScoped;
 @Model
 @ViewScoped
 public class DepotModel {
-    private int id;
+    private UUID id;
     private String name;
     private int capacity;
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -41,14 +42,14 @@ public class DepotModel {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
+    }  
     
     //public 
     
     /**
-     * Creates a new instance of DepotBean
+     * Creates a new instance of DepotModel
      */
-    public DepotModel(int id, String name, int capacity) {
+    public DepotModel(UUID id, String name, int capacity) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
