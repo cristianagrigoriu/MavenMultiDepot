@@ -19,6 +19,7 @@ public class DepotModel {
     private UUID id;
     private String name;
     private int capacity;
+    private LocationCoordinates coordinates;
 
     public UUID getId() {
         return id;
@@ -42,9 +43,15 @@ public class DepotModel {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }  
-    
-    //public 
+    }
+
+    public LocationCoordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(LocationCoordinates coordinates) {
+        this.coordinates = coordinates;
+    }
     
     /**
      * Creates a new instance of DepotModel

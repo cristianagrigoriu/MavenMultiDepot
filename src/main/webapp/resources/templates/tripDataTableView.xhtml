@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+   <h:body>
+       <cc:interface>
+           <cc:attribute name="value" type="java.util.List"/>
+       </cc:interface>
+        <cc:implementation>
+            <p:dataTable id="dataTableView" value="#{cc.attrs.value}" var="trip"
+                scrollable="true" scrollRows="10" scrollHeight="200" liveScroll="true">
+                <p:column  headerText="Id">
+                  #{trip.id}
+                </p:column>
+                <p:column  headerText="Starting Time" >
+                  #{trip.startingTime}
+                </p:column>
+                <p:column headerText="Duration" >
+                  #{trip.duration}
+                </p:column>
+                <p:column headerText="Source Depot" >
+                  #{trip.sourceDepot.name}
+                </p:column>
+                <p:column headerText="Destination Depot" >
+                  #{trip.destinationDepot.name}
+                </p:column>
+           </p:dataTable>
+        </cc:implementation>
+    </h:body>
+</html>
+

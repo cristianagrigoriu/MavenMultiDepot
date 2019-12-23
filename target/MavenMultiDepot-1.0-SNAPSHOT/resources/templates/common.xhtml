@@ -7,21 +7,23 @@
    <h:body> 
       <div>
          <ui:insert name = "header" >
-            <ui:include src = "/templates/header.xhtml" />
+            <ui:include src = "/resources/templates/header.xhtml">
+                <ui:param name="pageName" value="#{pageName}" /> 
+            </ui:include>
          </ui:insert> 
       </div>
       <br/>
       
       <div style = "border-width:2px; border-color:black; border-style:solid;">
          <ui:insert name = "content" >
-            <ui:include src = "/templates/contents.xhtml" />
+            <ui:include src = "/resources/templates/contents.xhtml" />
          </ui:insert>    
       </div>
       <br/>
       
       <div >
          <ui:insert name = "footer" >
-            <ui:include src = "/templates/footer.xhtml" />
+            <ui:include src = "/resources/templates/footer.xhtml" />
          </ui:insert>
       </div>
    </h:body>
