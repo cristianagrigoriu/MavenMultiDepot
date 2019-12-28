@@ -5,7 +5,7 @@ and open the template in the editor.
 */
 /* 
     Created on : Dec 15, 2019, 9:10:50 PM
-    Author     : crist
+    Author     : cristiana
 */
 
 #copyright {
@@ -24,12 +24,11 @@ hr {
 
 .rightElement {
     float: right;
-    /*background-color: lightgray;*/
+    padding-left: 5px;
 }
 
 .leftElement {
     float: left;
-    /*background-color: lightgray;*/
 }
 
 #footer {

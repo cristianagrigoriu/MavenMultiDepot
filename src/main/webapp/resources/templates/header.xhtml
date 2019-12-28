@@ -2,9 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:comp="http://java.sun.com/jsf/composite/templates">
     <h:body>
         <ui:composition> 
+            
             <div id="header">
                 <div class="leftElement">
                     <div>#{pageName}</div>
@@ -12,7 +16,18 @@
                 <div class="rightElement">
                     <h:link value = "Back To Home" outcome = "index" />
                 </div>
+                
+                <comp:login
+                    usernameLabel="Username:"
+                    usernameValue="#{userLoginView.username}"
+                    passwordLabel="Password:"
+                    passwordValue="#{userLoginView.password}"
+                    
+                    loginButtonText="Login"
+                    loginButtonAction="#{userLoginView.login()}"
+                />
             </div>
+            
         </ui:composition>	
     </h:body>
 </html>
