@@ -4,7 +4,7 @@ Short description
 -----
 The application is an interpretation of the multi depot vehicle scheduling problem.
 
-The user can login to the application and see the available trips and depots. He can also add or delete new items to each of these categories and save them to the database. He can also see the most convenient schedule for the current trips and depots configuration.
+The user can login to the application and see the available trips and depots. He can also add or delete new items to each of these categories and save them to the database. He can also see the most convenient schedule for the current trips and depots configuration. He can also choose between two languages: English and Romanian, from a drop-down in the header of each page.
 
 
 Techniques implemented
