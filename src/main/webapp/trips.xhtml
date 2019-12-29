@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
         <ui:composition template = "/resources/templates/common.xhtml">
-            <ui:param name="pageName" value="Trips" />
+            <ui:param name="pageName" value="#{msg['trips.jsf']}" />
             <ui:define name = "content">
                 <h:outputStylesheet library="css" name="style.css"/>
         
@@ -21,17 +21,17 @@
                         <p:ajax event="rowEdit" listener="#{tripView.onRowEdit}" />
                         <p:ajax event="rowEditCancel" listener="#{depotView.onRowCancel}"/>
 
-                        <p:column headerText="Id">
+                        <p:column headerText="#{msg['id.jsf']}">
                             <h:outputText value="#{trip.id}" />
                         </p:column>
 
-                        <p:column headerText="Starting Time">
+                        <p:column headerText="#{msg['startingTime.jsf']}">
                             <h:outputText value="#{trip.startingTime}" />
                         </p:column>
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Duration" />
+                                <h:outputText value="#{msg['duration.jsf']}" />
                             </f:facet>
                             <p:cellEditor>
                                 <f:facet name="output">
@@ -43,11 +43,11 @@
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="Source Depot">
+                        <p:column headerText="#{msg['sourceDepot.jsf']}">
                             <h:outputText value="#{trip.sourceDepot.name}" />
                         </p:column>
 
-                        <p:column headerText="Destination Depot">
+                        <p:column headerText="#{msg['destinationDepot.jsf']}">
                             <h:outputText value="#{trip.destinationDepot.name}" />
                         </p:column>
 
@@ -64,7 +64,7 @@
                         </p:column>
                     </p:dataTable>
 
-                    <p:commandButton value="Save" action="#{tripView.saveTrips}" update="growl" 
+                    <p:commandButton value="#{msg['save.jsf']}" action="#{tripView.saveTrips}" update="growl" 
                                      style="margin-right:20px; margin-top: 20px" icon="ui-icon-disk"/>
                     <p:growl id="growl" life="2000" />
 

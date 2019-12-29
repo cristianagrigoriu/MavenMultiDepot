@@ -7,12 +7,12 @@
         <ui:composition>
             <hr />
             <div class="footerElement" id="copyright">
-                <div>Copyright &copy; by Cristiana Grigoriu</div>
+                <div>#{msg['copyright.jsf']}</div>
             </div>
             <div class="footerElement" id="date">
                 <div id="date"></div>
                 <script>
-                    document.getElementById("date").innerHTML = "Current version: " + new Date().toDateString();
+                    document.getElementById("date").innerHTML = "#{msg['currentVersion.jsf']}" + ": " + new Date().toDateString();
                 </script>
             </div>
         </ui:composition>

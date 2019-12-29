@@ -13,19 +13,19 @@
         <cc:implementation>
             <p:dataTable id="dataTableView" value="#{cc.attrs.value}" var="trip"
                 scrollable="true" scrollRows="10" scrollHeight="200" liveScroll="true">
-                <p:column  headerText="Id">
+                <p:column  headerText="#{msg['id.jsf']}">
                   #{trip.id}
                 </p:column>
-                <p:column  headerText="Starting Time" >
+                <p:column  headerText="#{msg['startingTime.jsf']}" >
                   #{trip.startingTime}
                 </p:column>
-                <p:column headerText="Duration" >
+                <p:column headerText="#{msg['duration.jsf']}" >
                   #{trip.duration}
                 </p:column>
-                <p:column headerText="Source Depot" >
+                <p:column headerText="#{msg['sourceDepot.jsf']}" >
                   #{trip.sourceDepot.name}
                 </p:column>
-                <p:column headerText="Destination Depot" >
+                <p:column headerText="#{msg['destinationDepot.jsf']}" >
                   #{trip.destinationDepot.name}
                 </p:column>
            </p:dataTable>

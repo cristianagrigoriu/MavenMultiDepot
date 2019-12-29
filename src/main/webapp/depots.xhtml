@@ -11,7 +11,7 @@
     <h:body>
         
         <ui:composition template = "/resources/templates/common.xhtml">
-            <ui:param name="pageName" value="Depots" />
+            <ui:param name="pageName" value="#{msg['depots.jsf']}" />
             <ui:define name = "content">
                 <h:outputStylesheet library="css" name="style.css"/>
         
@@ -23,13 +23,13 @@
                         <p:ajax event="rowEdit" listener="#{depotView.onRowEdit}" />
                         <p:ajax event="rowEditCancel" listener="#{depotView.onRowCancel}"/>
 
-                        <p:column headerText="Id">
+                        <p:column headerText="#{msg['id.jsf']}">
                             <h:outputText value="#{depot.id}" />
                         </p:column>
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Name" />
+                                <h:outputText value="#{msg['name.jsf']}" />
                             </f:facet>
                             <p:cellEditor>
                                 <f:facet name="output">
@@ -43,7 +43,7 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Capacity" />
+                                <h:outputText value="#{msg['capacity.jsf']}" />
                             </f:facet>
                             <p:cellEditor>
                                 <f:facet name="output" >
@@ -71,7 +71,7 @@
 
                     </p:dataTable>
 
-                    <p:commandButton value="Save" action="#{depotView.saveDepots}" update="growl" 
+                    <p:commandButton value="#{msg['save.jsf']}" action="#{depotView.saveDepots}" update="growl" 
                                      style="margin-right:20px; margin-top: 20px" icon="ui-icon-disk"/>
                     <p:growl id="growl" life="2000" />
 

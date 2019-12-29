@@ -16,7 +16,7 @@ import org.primefaces.model.UploadedFile;
 
 /**
  *
- * @author crist
+ * @author cristiana
  */
 @Named("fileUploadView")
 @ManagedBean

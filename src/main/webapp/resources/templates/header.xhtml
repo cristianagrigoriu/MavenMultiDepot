@@ -11,21 +11,30 @@
             
             <div id="header">
                 <div class="leftElement">
-                    <div>#{pageName}</div>
+                    <h3>#{pageName}</h3>
                 </div>
+                
+                
                 <div class="rightElement">
-                    <h:link value = "Back To Home" outcome = "index" />
+                    <h:link value = "#{msg['backToHome.jsf']}" outcome = "index" />
                 </div>
                 
                 <comp:login
-                    usernameLabel="Username:"
+                    usernameLabel="#{msg['username.jsf']}:"
                     usernameValue="#{userLoginView.username}"
-                    passwordLabel="Password:"
+                    passwordLabel="#{msg['password.jsf']}:"
                     passwordValue="#{userLoginView.password}"
                     
-                    loginButtonText="Login"
+                    loginButtonText="#{msg['login.jsf']}"
                     loginButtonAction="#{userLoginView.login()}"
                 />
+                
+                <h:form class="rightElement">
+                    <p:selectOneMenu value="#{language.currentLanguage}" onchange="submit()"
+                                     valueChangeListener="#{language.currentLanguageChanged}" >
+                        <f:selectItems value="#{language.languages}" /> 
+                    </p:selectOneMenu>
+                </h:form>
             </div>
             
         </ui:composition>	

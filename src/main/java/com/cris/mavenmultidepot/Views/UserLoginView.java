@@ -42,7 +42,6 @@ public class UserLoginView {
     }
    
     public void login() {
-        int x = 10;
         FacesMessage message = null;
         boolean loggedIn = false;
          

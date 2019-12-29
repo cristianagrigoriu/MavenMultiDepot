@@ -24,11 +24,13 @@ hr {
 
 .rightElement {
     float: right;
+    vertical-align: middle;
     padding-left: 5px;
 }
 
 .leftElement {
     float: left;
+    vertical-align: middle;
 }
 
 #footer {

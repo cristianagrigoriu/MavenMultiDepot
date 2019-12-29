@@ -11,6 +11,7 @@ import com.cris.mavenmultidepot.Providers.TripService;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -21,7 +22,7 @@ import org.primefaces.event.RowEditEvent;
 
 /**
  *
- * @author crist
+ * @author cristiana
  */
 @Named("depotView")
 @ManagedBean
@@ -32,6 +33,7 @@ public class DepotView implements Serializable {
     @PostConstruct
     public void init() {
         depots = new DepotService().getDepots();
+        Language.setCurrentLanguageCode(Language.currentLanguageCode);
     }
     
     public List<DepotModel> getDepots() {
