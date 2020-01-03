@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.cris.mavenmultidepot.Views;
 
 import com.cris.mavenmultidepot.Providers.DepotService;
 import com.cris.mavenmultidepot.Models.DepotModel;
-import com.cris.mavenmultidepot.Providers.TripService;
-import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
@@ -26,14 +18,13 @@ import org.primefaces.event.RowEditEvent;
  */
 @Named("depotView")
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class DepotView implements Serializable {
     private List<DepotModel> depots;
     
     @PostConstruct
     public void init() {
         depots = new DepotService().getDepots();
-        Language.setCurrentLanguageCode(Language.currentLanguageCode);
     }
     
     public List<DepotModel> getDepots() {

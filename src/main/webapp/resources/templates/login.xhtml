@@ -10,7 +10,7 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+    <f:view locale="#{language.locale}">
     <cc:interface>
     	<cc:attribute name="usernameLabel" />
     	<cc:attribute name="usernameValue" />
@@ -58,4 +58,5 @@ and open the template in the editor.
                 </p:dialog>    
             </h:form>
     </cc:implementation>
+        </f:view>
 </html>

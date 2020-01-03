@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.cris.mavenmultidepot.Views;
+package com.cris.mavenmultidepot;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
@@ -20,26 +14,20 @@ import javax.faces.event.ValueChangeEvent;
  *
  * @author cristiana
  */
-@Named(value = "language")
 @ManagedBean
-@Dependent
-public class Language implements Serializable {
+@SessionScoped
+public class LanguageBean implements Serializable {
     
     @PostConstruct
     public void init() {
-        this.currentLanguage = this.currentLanguage != null
-                ? this.currentLanguage
-                : FacesContext.getCurrentInstance().getExternalContext().getRequestLocale().toString();
-        
-//        this.currentLanguageCode = this.currentLanguageCode != null
-//                ? this.currentLanguageCode
-//                : FacesContext.getCurrentInstance().getExternalContext().getRequestLocale().toString();
+        FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
     }
 
     private static final long serialVersionUID = 1L;
 
     public static String currentLanguage;
     public static String currentLanguageCode;
+    public static Locale locale;
 
     private static final Map<String,Object> languages;
 
@@ -53,33 +41,35 @@ public class Language implements Serializable {
             return languages;
     }
 
-
     public String getCurrentLanguage() {
             return currentLanguage;
     }
-
 
     public void setCurrentLanguage(String language) {
             this.currentLanguage = language;
     }
 
+    public Locale getLocale() {
+        return locale;
+    }
+
     public void currentLanguageChanged(ValueChangeEvent e){
 
         String newCurrentLanguageCode = e.getNewValue().toString();
-        this.setCurrentLanguageCode(newCurrentLanguageCode);
-    }
-    
-    public static void setCurrentLanguageCode(String newCurrentLanguageCode) {
         for (Map.Entry<String, Object> language : languages.entrySet()) {
-
-           if(language.getValue().toString().equals(newCurrentLanguageCode)){
+            if(language.getValue().toString().equals(newCurrentLanguageCode)){
                 currentLanguage = language.getKey();
-                currentLanguageCode = language.getValue().toString();
+                locale = (Locale)language.getValue();
                 FacesContext.getCurrentInstance()
-                        .getViewRoot().setLocale((Locale)language.getValue());
-
-          }
-       }
+                        .getViewRoot().setLocale(locale);
+            }
+        }
     }
     
+    public void setCurrentLocale() {
+        locale = locale != null
+                ? locale
+                : FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+    }
 }

@@ -6,6 +6,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:comp="http://java.sun.com/jsf/composite/templates">
+    <f:view locale="#{language.locale}">
+        
     <h:body>
         <ui:composition> 
             
@@ -36,8 +38,8 @@
                     </p:selectOneMenu>
                 </h:form>
             </div>
-            
         </ui:composition>	
     </h:body>
+        </f:view>
 </html>
 
