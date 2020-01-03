@@ -22,6 +22,25 @@ import org.primefaces.event.RowEditEvent;
 public class DepotView implements Serializable {
     private List<DepotModel> depots;
     
+    private String newDepotName;
+    private String newDepotCapacity;
+
+    public String getNewDepotName() {
+        return newDepotName;
+    }
+
+    public void setNewDepotName(String newDepotName) {
+        this.newDepotName = newDepotName;
+    }
+
+    public String getNewDepotCapacity() {
+        return newDepotCapacity;
+    }
+
+    public void setNewDepotCapacity(String newDepotCapacity) {
+        this.newDepotCapacity = newDepotCapacity;
+    }
+    
     @PostConstruct
     public void init() {
         depots = new DepotService().getDepots();
@@ -52,5 +71,10 @@ public class DepotView implements Serializable {
     public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public void createNewDepot() {
+        DepotModel newDepot = new DepotModel(this.newDepotName, Integer.parseInt(newDepotCapacity));
+        depots.add(newDepot);
     }
 }

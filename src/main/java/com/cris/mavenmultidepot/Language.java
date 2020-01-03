@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
@@ -14,9 +15,10 @@ import javax.faces.event.ValueChangeEvent;
  *
  * @author cristiana
  */
-@ManagedBean
 @SessionScoped
-public class LanguageBean implements Serializable {
+@ManagedBean
+@Named("language")
+public class Language implements Serializable {
     
     @PostConstruct
     public void init() {

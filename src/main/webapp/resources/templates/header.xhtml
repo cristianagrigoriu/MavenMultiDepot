@@ -8,38 +8,48 @@
       xmlns:comp="http://java.sun.com/jsf/composite/templates">
     <f:view locale="#{language.locale}">
         
-    <h:body>
-        <ui:composition> 
-            
-            <div id="header">
-                <div class="leftElement">
-                    <h3>#{pageName}</h3>
+        <h:body>
+            <ui:composition> 
+
+                <div id="header">
+                    <div class="leftElement">
+                        <h3>#{pageName}</h3>
+                    </div>
+
+
+                    <div class="rightElement">
+                        <h:link value = "#{msg['backToHome.jsf']}" outcome = "index" />
+                    </div>
+
+                    <h:form class="rightElement">        
+                        <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
+                             #{msg['login.jsf']}
+                        </h:outputLink>
+                    </h:form>
+
+                    <comp:twoFieldPopup
+                        popupTitle="#{msg['login.jsf']}"
+
+                        isSecondFieldPassword="True"
+
+                        firstFieldLabel="#{msg['username.jsf']}:"
+                        firstFieldValue="#{userLoginView.username}"
+                        secondFieldLabel="#{msg['password.jsf']}:"
+                        secondFieldValue="#{userLoginView.password}"
+
+                        buttonText="#{msg['login.jsf']}"
+                        buttonAction="#{userLoginView.login()}"
+                    />
+
+                    <h:form class="rightElement">
+                        <p:selectOneMenu value="#{language.currentLanguage}" onchange="submit()"
+                                         valueChangeListener="#{language.currentLanguageChanged}" >
+                            <f:selectItems value="#{language.languages}" /> 
+                        </p:selectOneMenu>
+                    </h:form>
                 </div>
-                
-                
-                <div class="rightElement">
-                    <h:link value = "#{msg['backToHome.jsf']}" outcome = "index" />
-                </div>
-                
-                <comp:login
-                    usernameLabel="#{msg['username.jsf']}:"
-                    usernameValue="#{userLoginView.username}"
-                    passwordLabel="#{msg['password.jsf']}:"
-                    passwordValue="#{userLoginView.password}"
-                    
-                    loginButtonText="#{msg['login.jsf']}"
-                    loginButtonAction="#{userLoginView.login()}"
-                />
-                
-                <h:form class="rightElement">
-                    <p:selectOneMenu value="#{language.currentLanguage}" onchange="submit()"
-                                     valueChangeListener="#{language.currentLanguageChanged}" >
-                        <f:selectItems value="#{language.languages}" /> 
-                    </p:selectOneMenu>
-                </h:form>
-            </div>
-        </ui:composition>	
-    </h:body>
-        </f:view>
+            </ui:composition>	
+        </h:body>
+    </f:view>
 </html>
 

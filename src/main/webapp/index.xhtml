@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       lang="#{language.locale}">
     <f:view locale="#{language.locale}">
-    <f:event type="preRenderView" listener="#{language.setCurrentLocale}" />
+    <f:event type="preRenderView" listener="#{language.setCurrentLocale()}" />
         
         <h:head></h:head>
         <h:body>

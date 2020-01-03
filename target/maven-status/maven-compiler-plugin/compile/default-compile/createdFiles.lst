@@ -6,8 +6,8 @@ com\cris\mavenmultidepot\Views\UserLoginView.class
 com\cris\mavenmultidepot\DepotBean.class
 com\cris\mavenmultidepot\Models\DepotModel.class
 com\cris\multimavendepot\Validators\DepotCapacityValidator.class
+com\cris\mavenmultidepot\NoCacheFilter.class
 com\cris\mavenmultidepot\Views\DepotView.class
-com\cris\mavenmultidepot\Views\Language.class
 com\cris\mavenmultidepot\Views\FileUploadView.class
 com\cris\mavenmultidepot\App.class
 com\cris\mavenmultidepot\TripBean.class

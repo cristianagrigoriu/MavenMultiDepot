@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.cris.mavenmultidepot.Models;
 
 import java.util.UUID;
@@ -11,7 +6,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author crist
+ * @author cristiana
  */
 @Model
 @ViewScoped
@@ -61,10 +56,13 @@ public class DepotModel {
         this.name = name;
         this.capacity = capacity;
     }
+    
     public DepotModel() {
     }
     
-    
-  
-    
+    public DepotModel(String name, int capacity) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.capacity = capacity;
+    }
 }

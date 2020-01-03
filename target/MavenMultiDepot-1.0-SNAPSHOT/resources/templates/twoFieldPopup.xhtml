@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{language.locale}">
+        <cc:interface>
+            <cc:attribute name="popupTitle" />
+            <cc:attribute name="isSecondFieldPassword" />
+            
+            <cc:attribute name="firstFieldLabel" />
+            <cc:attribute name="firstFieldValue" />
+            <cc:attribute name="secondFieldLabel" />
+            <cc:attribute name="secondFieldValue" />
+
+            <cc:attribute name="buttonText" />
+            <cc:attribute name="buttonAction" 
+                    method-signature="java.lang.String action()" />
+        </cc:interface>
+
+        <cc:implementation>
+                <script type="text/javascript">
+                    function handleLoginRequest(xhr, status, args) {
+                        if(args.validationFailed || !args.loggedIn) {
+                            PF('dlg').jq.effect("shake", {times:5}, 100);
+                        }
+                        else {
+                            PF('dlg').hide();
+                            $('#loginLink').fadeOut();
+                        }
+                    }
+                </script>
+
+                <h:form class="rightElement"> 
+
+                    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+                    <p:dialog header="#{cc.attrs.popupTitle}" widgetVar="dlg" resizable="false">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel for="firstField" value="#{cc.attrs.firstFieldLabel}" />
+                            <p:inputText id="firstField" value="#{cc.attrs.firstFieldValue}" required="true" label="firstField" />
+
+                            <h:outputLabel for="secondField" value="#{cc.attrs.secondFieldLabel}" />
+                            <p:inputText id="secondField" rendered="#{cc.attrs.isSecondFieldPassword == 'False'}" value="#{cc.attrs.secondFieldValue}" required="true" label="secondField" />
+                            <p:password id="secondFieldPassword" rendered="#{cc.attrs.isSecondFieldPassword == 'True'}" value="#{cc.attrs.secondFieldValue}" required="true" label="secondField" />
+
+                            <f:facet name="footer">
+                                <p:commandButton value="#{cc.attrs.buttonText}" update="growl" action="#{cc.attrs.buttonAction}"
+                                                 oncomplete="handleLoginRequest(xhr, status, args)" ajax="false" />
+                            </f:facet>  
+                        </h:panelGrid>
+                    </p:dialog>    
+                </h:form>
+        </cc:implementation>
+    </f:view>
+</html>
