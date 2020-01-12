@@ -21,5 +21,6 @@ Technologies used
 + Java 8 -> server-side
 + PostgreSQL -> database
 + Implemented using NetBeans IDE 8.0.2
++ GlassFish Server 4.1
 
 Site can be visited at: [localhost:8080/MavenMultiDepot](http://localhost:8080/MavenMultiDepot/)
