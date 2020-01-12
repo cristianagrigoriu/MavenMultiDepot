@@ -19,7 +19,7 @@ Technologies used
 -----
 + PrimeFaces, JSF -> client-side
 + Java 8 -> server-side
-+ PostgreSQL -> database
++ PostgreSQL, pgAdmin 4.15 -> database
 + Implemented using NetBeans IDE 8.0.2
 + GlassFish Server 4.1
 
