@@ -52,7 +52,7 @@ and open the template in the editor.
                             <p:password id="secondFieldPassword" rendered="#{cc.attrs.isSecondFieldPassword == 'True'}" value="#{cc.attrs.secondFieldValue}" required="true" label="secondField" />
 
                             <f:facet name="footer">
-                                <p:commandButton value="#{cc.attrs.buttonText}" update="growl" action="#{cc.attrs.buttonAction}"
+                                <p:commandButton value="#{cc.attrs.buttonText}" process="@this" action="#{cc.attrs.buttonAction}"
                                                  oncomplete="handleLoginRequest(xhr, status, args)" ajax="false" />
                             </f:facet>  
                         </h:panelGrid>

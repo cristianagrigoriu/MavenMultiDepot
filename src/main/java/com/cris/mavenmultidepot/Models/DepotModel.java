@@ -1,18 +1,33 @@
 package com.cris.mavenmultidepot.Models;
 
+import java.io.Serializable;
 import java.util.UUID;
 import javax.enterprise.inject.Model;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author cristiana
  */
-@Model
-@ViewScoped
-public class DepotModel {
+@ManagedBean
+@Entity
+@SessionScoped
+@Table(name="depots")
+public class DepotModel implements Serializable{
+    @Id
+    @Column(name="id")
     private UUID id;
+    
+    @Column(name="name")
     private String name;
+    
+    @Column(name="capacity")
     private int capacity;
     private LocationCoordinates coordinates;
 

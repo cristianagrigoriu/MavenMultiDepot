@@ -1,0 +1,19 @@
+<!--<hibernate-configuration>
+    <session-factory>
+        <property name="dialect">
+            org.hibernate.dialect.PostgreSQLDialect
+        </property>
+
+        <property name="connection.driver_class">
+            org.postgresql.Driver
+        </property>
+        <property name="connection.url">
+            jdbc:postgresql://localhost:5432/vehicles
+        </property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">Java1sland</property>
+        <property name="connection.pool_size">1</property>
+
+        <property name="hbm2ddl.auto">create</property>
+    </session-factory>
+</hibernate-configuration>-->

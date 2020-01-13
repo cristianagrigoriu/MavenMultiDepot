@@ -73,8 +73,9 @@ public class DepotView implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
-    public void createNewDepot() {
+    public String createNewDepot() {
         DepotModel newDepot = new DepotModel(this.newDepotName, Integer.parseInt(newDepotCapacity));
         depots.add(newDepot);
+        return null;
     }
 }
