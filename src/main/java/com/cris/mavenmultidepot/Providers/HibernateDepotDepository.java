@@ -73,6 +73,27 @@ public class HibernateDepotDepository implements DepotRepository {
         
         return foundDepots;
     }
+    
+    @Override
+    public List<Depot> getDepotByCapacity(int capacity) {
+        em.getTransaction().begin();
+        
+        Query q = em.createNativeQuery("SELECT * FROM new_depots WHERE capacity = ?");
+        q.setParameter(1, capacity);
+        List<Object[]> depotsByCapacity =  q.getResultList();
+
+        List<Depot> foundDepots = new ArrayList<>();
+        
+        for (Object[] newDepotObject : depotsByCapacity) {
+            Depot newDepot = new Depot((int) newDepotObject[0], newDepotObject[1].toString(), (int) newDepotObject[2]);
+            foundDepots.add(newDepot);
+        }
+        
+        em.getTransaction().commit();
+        em.close();
+        
+        return foundDepots;
+    }
 
     @Override
     public Depot saveDepot(Depot toBeSaved) {

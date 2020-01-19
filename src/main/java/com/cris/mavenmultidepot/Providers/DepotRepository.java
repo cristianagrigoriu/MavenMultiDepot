@@ -13,6 +13,8 @@ public interface DepotRepository {
     Depot getDepotById(int id);
  
     List<Depot> getDepotByName(String name);
+    
+    List<Depot> getDepotByCapacity(int capacity);
  
     Depot saveDepot(Depot b);
      
