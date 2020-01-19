@@ -5,7 +5,7 @@
  */
 package com.cris.mavenmultidepot.Views;
 
-import DatabaseObjects.Depot;
+import com.cris.mavenmultidepot.DatabaseObjects.Depot;
 import com.cris.mavenmultidepot.Models.DepotModel;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@
  */
 package com.cris.mavenmultidepot.Providers;
 
-import DatabaseObjects.Depot;
+import com.cris.mavenmultidepot.DatabaseObjects.Depot;
 import com.cris.mavenmultidepot.Models.DepotModel;
 import com.cris.mavenmultidepot.Models.TripModel;
 import static com.cris.mavenmultidepot.Providers.TripService.trips;

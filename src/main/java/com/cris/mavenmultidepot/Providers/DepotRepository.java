@@ -1,6 +1,6 @@
 package com.cris.mavenmultidepot.Providers;
 
-import DatabaseObjects.Depot;
+import com.cris.mavenmultidepot.DatabaseObjects.Depot;
 import java.util.List;
 
 /**

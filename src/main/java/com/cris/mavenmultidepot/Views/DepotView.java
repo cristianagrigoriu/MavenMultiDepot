@@ -1,6 +1,6 @@
 package com.cris.mavenmultidepot.Views;
 
-import DatabaseObjects.Depot;
+import com.cris.mavenmultidepot.DatabaseObjects.Depot;
 import com.cris.mavenmultidepot.Providers.DepotService;
 import com.cris.mavenmultidepot.Models.DepotModel;
 import com.cris.mavenmultidepot.Providers.HibernateDepotDepository;
@@ -49,7 +49,6 @@ public class DepotView implements Serializable {
     public void init() {
         depots = new DepotService().getDepots();
         newDepots = new HibernateDepotDepository().getAllDepots();
-        new HibernateDepotDepository().deleteDepotById(5);
     }
     
     public List<DepotModel> getDepots() {
