@@ -65,21 +65,4 @@ public class FileUploadView {
         FacesMessage msg = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
-    public void getDepotsFromDatabase() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        
-        Depot a = em.find(Depot.class, 1);
-        
-//        DepotModel d = new DepotModel("ananas", 17);
-//        
-//        em.persist(d);
-        
-        em.getTransaction().commit();
-        em.close();
-        
-        this.depotNames.add(a.getName());
-    }
 }

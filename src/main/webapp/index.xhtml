@@ -17,11 +17,6 @@
 
                 <ui:define name = "content">
                     <h:outputStylesheet library="css" name="style.css"/>
-
-                    <h:form>
-                        <p:commandButton value="Get data" ajax="false" action="#{fileUploadView.getDepotsFromDatabase}" disabled="false" />
-                        <h:outputText value="#{fileUploadView.depotNames}"></h:outputText>
-                    </h:form>
                     
                     <h:form>
                         <p:commandButton id="depotButton" style="margin-top: 20px" action="#{indexBean.goToDepots()}" value="#{msg['goToDepots.jsf']}" />
