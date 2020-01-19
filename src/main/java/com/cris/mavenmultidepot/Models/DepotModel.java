@@ -3,6 +3,10 @@ package com.cris.mavenmultidepot.Models;
 import java.util.UUID;
 import javax.enterprise.inject.Model;
 import javax.faces.bean.ViewScoped;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
@@ -11,9 +15,18 @@ import javax.faces.bean.ViewScoped;
 @Model
 @ViewScoped
 public class DepotModel {
+    private int intId;
     private UUID id;
     private String name;
     private int capacity;
+
+    public int getIntId() {
+        return intId;
+    }
+
+    public void setIntId(int intId) {
+        this.intId = intId;
+    }
 
     public UUID getId() {
         return id;

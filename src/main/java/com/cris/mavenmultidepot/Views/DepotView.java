@@ -1,5 +1,6 @@
 package com.cris.mavenmultidepot.Views;
 
+import DatabaseObjects.Depot;
 import com.cris.mavenmultidepot.Providers.DepotService;
 import com.cris.mavenmultidepot.Models.DepotModel;
 import java.io.Serializable;
@@ -21,6 +22,8 @@ import org.primefaces.event.RowEditEvent;
 @SessionScoped
 public class DepotView implements Serializable {
     private List<DepotModel> depots;
+    
+    private List<Depot> newDepots;
     
     private String newDepotName;
     private String newDepotCapacity;
@@ -44,10 +47,15 @@ public class DepotView implements Serializable {
     @PostConstruct
     public void init() {
         depots = new DepotService().getDepots();
+        newDepots = new DepotService().getNewDepots();
     }
     
     public List<DepotModel> getDepots() {
         return depots;
+    }
+
+    public List<Depot> getNewDepots() {
+        return newDepots;
     }
     
     public void onRowEdit(RowEditEvent event) {

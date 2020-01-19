@@ -18,6 +18,88 @@
             <ui:define name = "content">
                 <h:outputStylesheet library="css" name="style.css"/>
         
+                <h:form id="newDepotsTableForm">
+
+                    <p:dataTable var="newDepot" value="#{depotView.newDepots}"
+                                 editable="true">
+
+                        <p:ajax event="rowEdit" listener="#{depotView.onRowEdit}" />
+                        <p:ajax event="rowEditCancel" listener="#{depotView.onRowCancel}"/>
+
+                        <p:column headerText="#{msg['id.jsf']}">
+                            <h:outputText value="#{newDepot.id}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['name.jsf']}" />
+                            </f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{newDepot.name}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{newDepot.name}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['capacity.jsf']}" />
+                            </f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output" >
+                                    <h:outputText value="#{newDepot.capacity}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText validator="depotCapacityValidator" id="depotCapacity"
+                                        value="#{newDepot.capacity}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                            <p:messages for="depotCapacity" style="color:red"/>
+                        </p:column>
+
+                        <p:column>
+                            <p:rowEditor />
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton icon="ui-icon-trash"
+                                    title="Delete"
+                                    actionListener="#{depotView.remove(newDepot)}"
+                                    update=":depotsTableForm"
+                                    ajax="true" />
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <p:commandButton value="#{msg['save.jsf']}" action="#{depotView.saveDepots}" update="growl" 
+                                     style="margin-right:20px; margin-top: 20px" icon="ui-icon-disk"/>
+                    <p:growl id="growl" life="2000" />
+                </h:form>
+                
+                
+                
+                <h:form>
+                    <p:commandButton value="#{msg['new.jsf']}" oncomplete="PF('dlg').show();"
+                                     style="margin-right:20px; margin-top: 20px" icon="ui-icon-plus"/>
+                </h:form>
+
+                <comp:twoFieldPopup
+                    popupTitle="#{msg['newDepot.jsf']}"
+                    isSecondFieldPassword="False"
+
+                    firstFieldLabel="#{msg['name.jsf']}:"
+                    firstFieldValue="#{depotView.newDepotName}"
+                    secondFieldLabel="#{msg['capacity.jsf']}:"
+                    secondFieldValue="#{depotView.newDepotCapacity}"
+
+                    buttonText="#{msg['new.jsf']}"
+                    buttonAction="#{depotView.createNewDepot()}"
+                />
+                
+                
                 <h:form id="depotsTableForm">
 
                     <p:dataTable var="depot" value="#{depotView.depots}"

@@ -5,8 +5,11 @@
  */
 package com.cris.mavenmultidepot.Views;
 
+import DatabaseObjects.Depot;
+import com.cris.mavenmultidepot.Models.DepotModel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -68,11 +71,15 @@ public class FileUploadView {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         
+        Depot a = em.find(Depot.class, 1);
         
+//        DepotModel d = new DepotModel("ananas", 17);
+//        
+//        em.persist(d);
         
         em.getTransaction().commit();
         em.close();
         
-        this.depotNames.add("ananas");
+        this.depotNames.add(a.getName());
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.cris.mavenmultidepot.Providers;
 
+import DatabaseObjects.Depot;
 import com.cris.mavenmultidepot.Models.DepotModel;
 import com.cris.mavenmultidepot.Models.TripModel;
 import static com.cris.mavenmultidepot.Providers.TripService.trips;
@@ -20,6 +21,10 @@ import static java.util.UUID.fromString;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,6 +35,7 @@ import javax.inject.Named;
 @ManagedBean
 public class DepotService {
     public static List<DepotModel> depots = new ArrayList<DepotModel>();
+    public static List<Depot> newDepots = new ArrayList<Depot>();
     
     public static List<DepotModel> getDepots() {
         if (depots.isEmpty()) {
@@ -111,6 +117,33 @@ public class DepotService {
     
     public static DepotModel findDepotById(List<DepotModel> depots, UUID depotId) {
         return depots.stream().filter(d -> depotId.equals(d.getId())).findFirst().orElse(null);
+    }
+
+    public List<Depot> getNewDepots() {
+        if (newDepots.isEmpty()) {
+            newDepots = getNewDepotsFromDatabase();
+        }
+        return newDepots;
+    }
+
+    private List<Depot> getNewDepotsFromDatabase() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        
+        
+        Query query = em.createNativeQuery("SELECT * FROM new_depots;");
+        List<Object[]> newDepotObjects = query.getResultList();
+        
+        for (Object[] newDepotObject : newDepotObjects) {
+            Depot newDepot = new Depot((int) newDepotObject[0], newDepotObject[1].toString(), (int) newDepotObject[2]);
+            newDepots.add(newDepot);
+        }
+        
+        em.getTransaction().commit();
+        em.close();
+        
+        return newDepots;
     }
     
 }
