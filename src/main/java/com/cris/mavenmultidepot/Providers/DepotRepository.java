@@ -12,9 +12,9 @@ public interface DepotRepository {
     
     Depot getDepotById(int id);
  
-    Depot getDepotByTitle(String title);
+    List<Depot> getDepotByName(String name);
  
     Depot saveDepot(Depot b);
      
-    void deleteDepot(Depot b);
+    void deleteDepotById(int id);
 }

@@ -49,6 +49,7 @@ public class DepotView implements Serializable {
     public void init() {
         depots = new DepotService().getDepots();
         newDepots = new HibernateDepotDepository().getAllDepots();
+        new HibernateDepotDepository().deleteDepotById(5);
     }
     
     public List<DepotModel> getDepots() {
