@@ -13,6 +13,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -61,6 +64,15 @@ public class FileUploadView {
     }
     
     public void getDepotsFromDatabase() {
-        this.depotNames.add("mango");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        
+        
+        
+        em.getTransaction().commit();
+        em.close();
+        
+        this.depotNames.add("ananas");
     }
 }
