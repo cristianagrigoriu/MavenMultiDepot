@@ -68,20 +68,6 @@ public class TripModel {
         this.destinationDepot = destinationDepot;
     }
     
-    //TODO implement logic for computing trip schedule with coordinates
-    private static boolean canExecuteTripsOneAfterTheOther(TripModel firstTrip, TripModel secondTrip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public static double getCostBetweenTrips(TripModel firstTrip, TripModel secondTrip) {
-        if (canExecuteTripsOneAfterTheOther(firstTrip, secondTrip)) {
-            return LocationCoordinates.getEuclideanDistance(
-                    firstTrip.destinationDepot.getCoordinates(), 
-                    secondTrip.sourceDepot.getCoordinates());
-        }
-        return -1;
-    }
-    
     /**
      * Creates a new instance of TripModel
      */

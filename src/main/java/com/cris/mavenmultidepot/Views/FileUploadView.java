@@ -5,6 +5,8 @@
  */
 package com.cris.mavenmultidepot.Views;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -24,6 +26,8 @@ import org.primefaces.model.UploadedFile;
 public class FileUploadView {
      
     private UploadedFile file;
+    
+    private List<String> depotNames = new ArrayList<>();
  
     public UploadedFile getFile() {
         return file;
@@ -32,7 +36,17 @@ public class FileUploadView {
     public void setFile(UploadedFile file) {
         this.file = file;
     }
+
+    public List<String> getDepotNames() {
+        return depotNames;
+    }
+
+    public void setDepotNames(List<String> depotNames) {
+        this.depotNames = depotNames;
+    }
  
+    
+    
     public void upload() {
         if (file != null) {
             FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
@@ -44,5 +58,9 @@ public class FileUploadView {
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public void getDepotsFromDatabase() {
+        this.depotNames.add("mango");
     }
 }
