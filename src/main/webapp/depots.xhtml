@@ -81,6 +81,8 @@
                 
                 
                 
+                
+                
                 <h:form>
                     <p:commandButton value="#{msg['new.jsf']}" oncomplete="PF('dlg').show();"
                                      style="margin-right:20px; margin-top: 20px" icon="ui-icon-plus"/>
@@ -98,6 +100,15 @@
                     buttonText="#{msg['new.jsf']}"
                     buttonAction="#{depotView.createNewDepot()}"
                 />
+                
+                <h:outputText value="Filter" />
+                
+                <h:form>
+                    <p:selectOneMenu value="#{language.currentLanguage}" onchange="submit()"
+                                     valueChangeListener="#{depotFilter.currentLanguageChanged}" >
+                        <f:selectItems value="#{depotFilter.depotFilterOptions}" /> 
+                    </p:selectOneMenu>
+                </h:form>
                 
                 
                 <h:form id="depotsTableForm">

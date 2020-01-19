@@ -34,7 +34,7 @@ public class Language implements Serializable {
     private static final Map<String,Object> languages;
 
     static{
-            languages = new LinkedHashMap<String,Object>();
+            languages = new LinkedHashMap<>();
             languages.put("English", Locale.ENGLISH);
             languages.put("Romanian", new Locale("ro"));
     }
