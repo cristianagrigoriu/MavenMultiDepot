@@ -1,9 +1,9 @@
 package com.cris.mavenmultidepot;
 
 import java.io.IOException;
-import java.util.logging.Filter;
 import java.util.logging.LogRecord;
 import javax.faces.application.ResourceHandler;
+import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;

@@ -10,6 +10,7 @@ com\cris\mavenmultidepot\NoCacheFilter.class
 com\cris\mavenmultidepot\Views\DepotView.class
 com\cris\mavenmultidepot\Views\FileUploadView.class
 com\cris\mavenmultidepot\App.class
+com\cris\mavenmultidepot\Language.class
 com\cris\mavenmultidepot\TripBean.class
 com\cris\mavenmultidepot\Models\TripModel.class
 com\cris\mavenmultidepot\Views\ScheduleView.class

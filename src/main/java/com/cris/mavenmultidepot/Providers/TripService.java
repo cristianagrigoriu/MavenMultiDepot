@@ -8,24 +8,18 @@ package com.cris.mavenmultidepot.Providers;
 import com.cris.mavenmultidepot.Models.DepotModel;
 import com.cris.mavenmultidepot.Models.TripModel;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.sql.Types;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import static java.util.UUID.fromString;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 /**
  *
