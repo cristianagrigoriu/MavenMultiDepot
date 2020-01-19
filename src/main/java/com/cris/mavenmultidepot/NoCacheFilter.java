@@ -41,13 +41,6 @@ public class NoCacheFilter implements Filter {
 
         chain.doFilter(req, res);
     }
-
-    // ...
-
-    @Override
-    public boolean isLoggable(LogRecord record) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public void init(FilterConfig config) throws ServletException {
         // Nothing to do here!
