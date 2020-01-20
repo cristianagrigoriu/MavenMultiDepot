@@ -61,7 +61,7 @@ public class HibernateDepotDepository implements DepotRepository {
         q.setParameter(1, name);
         List<Object[]> depotsByName =  q.getResultList();
 
-        List<Depot> foundDepots = new ArrayList<Depot>();
+        List<Depot> foundDepots = new ArrayList<>();
         
         for (Object[] newDepotObject : depotsByName) {
             Depot newDepot = new Depot((int) newDepotObject[0], newDepotObject[1].toString(), (int) newDepotObject[2]);
